@@ -1,4 +1,4 @@
-function r=WaitSecs(s,se)
+function r = WaitSecs(s, se)
 % wakeup=WaitSecs(s)
 %
 % Waits "s" seconds with high precision.  The timing precision  depends on

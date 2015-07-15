@@ -1,36 +1,42 @@
-function prompt( window, reps, phrase, subject, match, stimulus, stimEach, isProficiency)
-%	prompt( window, runs, phrase, subject, match, stimulus [, stimEach, isProficiency])
-%   Detailed explanation goes here
+function prompt( window, reps, phrase, subject, match, stimulus, stimEach, isBaseline, isProficiency)
+%	prompt( window, reps, phrase, subject, match, stimulus [, stimEach, isProficiency])
 
 
-%% Handles ommitted input arguments
+%% Handles omitted input arguments
 if nargin < 1 || isempty(window)
 	error('No PTB window open!');
+	% window = Window();
 end
 if nargin < 2 || isempty(reps)
-	reps = 2;
+	reps = 10;
 end
 if nargin < 3 || isempty(phrase)
 	phrase = 'ja biau bue';
 end
 if nargin < 4 || isempty(subject)
-% 	error('bro, no subject entered');
-	subject	= '000_NH';				% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+	error('bro, no subject entered');
+	% subject	= '000_NH';				% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 end
 if nargin < 5 || isempty(match)
 	match = 'Matched';				% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 % 	match = 'Unmatched';
 end
 if nargin < 6 || isempty(stimulus)
-	stimulus = 'Visual';			% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% 	stimulus = 'Auditory';
+% 	stimulus = 'Visual';			% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+	stimulus = 'Auditory';
 end
 if nargin < 7 || isempty(stimEach)
 	stimEach = false;
 end
-if nargin < 8 || isempty(isProficiency)
+if nargin < 8 || isempty(isBaseline)
+	isBaseline = false;
+end
+if nargin < 9 || isempty(isProficiency)
 	isProficiency = false;
 end
+
+
+proficiency = isProficiency;
 
 ortho = getOrtho(phrase);
 
@@ -45,34 +51,42 @@ for i = 1:reps
 	switch(stimulus)
 		case 'Auditory'
 			% Plays stimulus each run if indicated, but only once for the proficiency run
-			if(stimEach || ~isProficiency)
+			if(stimEach || ~proficiency)
 				
 				playAudio(phrase, subject, match, stimulus);
-								
-				WaitSecs(5);
 				
 				% Don't show stimulus next time
-				isProficiency = true;
+				proficiency = true;
 			end
 		case 'Visual'
 			% Plays stimulus each run if indicated, but only once for the proficiency run
-			if(stimEach || ~isProficiency)
+			if(stimEach || ~proficiency)
 				
 				% Displays RASS output
 				playStim(phrase, subject, match, stimulus);
 				
+				window = Window();
+				
 				WaitSecs(5);
 								
 				% Don't show stimulus next time
-				isProficiency = true;
+				proficiency = true;
 			end			
 		otherwise
 			error('No stimuli entered');
 	end
 	
-	Beep();
-
-	WaitSecs(5);
+	Beep();	
+	
+	WaitSecs(0.25);
+	
+	if (isProficiency || isBaseline)
+		audioGate(6, true);							% Feedback with masking
+	else
+		audioGate(6, false);						% Feedback without masking
+	end
+	
+% 	WaitSecs(6);
 end
 	
 

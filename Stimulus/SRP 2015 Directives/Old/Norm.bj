@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<BatchJob xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProcessList>
+    <Preset>
+      <OwnerNameText>Normalize</OwnerNameText>
+      <PresetName>Normalize RMS to -10 dB (speech)</PresetName>
+      <PresetData>CAAAAAEAAAAPSUhiEz3UPwAAAAABAAAA3x4kgJMIdz8AAAAAAABpQAAAAAAAAGlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</PresetData>
+      <PresetOwner>Normalize</PresetOwner>
+      <OutPreserveSubfolders>false</OutPreserveSubfolders>
+    </Preset>
+    <Preset>
+      <OwnerNameText>Sony Graphic EQ</OwnerNameText>
+      <PresetName>DirectiveEQ</PresetName>
+      <PresetData>cAIAAO4qcouERdERtMsAoMknChABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGv///8wEAADu/v//ggkAAPn+///KEAAATP///7sUAADW////hxkAAFUAAACUHgAAYAAAAPMiAAD8////ECcAAPP+//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAA</PresetData>
+      <PresetOwner>8b7226ee-4584-11d1-b4cb-00a0c9270a10</PresetOwner>
+      <OutPreserveSubfolders>false</OutPreserveSubfolders>
+    </Preset>
+    <Preset>
+      <OwnerNameText>Sony Multi-Band Dynamics</OwnerNameText>
+      <PresetName>DirectiveCOMP</PresetName>
+      <PresetData>5AAAAKMKbQK5m9ARrrwAoMkFORIAAAAA6v7//2D///8AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA3AAAAUQEAAAoAAAAKAAAACgAAAAAAAAAAAAAAAAAAAOgDAAAAAAAAAAAAAAAAAADx////1f///wAAAAAAAAAACgAAAAMAAAADAAAAAwAAAL4TAAD7AAAAMgAAADIAAAABAAAAAAAAAAAAAAABAAAAAQAAAIAAAACAAAAAgAAAAIAAAAAQAAAAEAAAABAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</PresetData>
+      <PresetOwner>026d0aa0-9bb9-11d0-aebc-00a0c9053912</PresetOwner>
+      <OutPreserveSubfolders>false</OutPreserveSubfolders>
+    </Preset>
+    <Preset>
+      <OwnerNameText>Normalize</OwnerNameText>
+      <PresetName>Normalize RMS to -6 dB (very loud!)</PresetName>
+      <PresetData>CAAAAAEAAABSQjPPuQngPwAAAAABAAAA3x4kgJMIdz8AAAAAAABpQAAAAAAAAGlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</PresetData>
+      <PresetOwner>Normalize</PresetOwner>
+      <OutPreserveSubfolders>false</OutPreserveSubfolders>
+    </Preset>
+  </ProcessList>
+  <RenderList>
+    <Preset>
+      <OwnerNameText>Same as source</OwnerNameText>
+      <PresetName>Same as source</PresetName>
+      <PresetOwner>Same as source</PresetOwner>
+      <OutFolder>Same as source</OutFolder>
+      <OutPreserveSubfolders>false</OutPreserveSubfolders>
+      <OutFileAppend>NECN</OutFileAppend>
+    </Preset>
+  </RenderList>
+  <MetadataSet />
+</BatchJob>

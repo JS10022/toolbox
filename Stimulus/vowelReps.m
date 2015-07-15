@@ -1,43 +1,45 @@
-function vowelReps( window, reps, mask, maskAll )
-% prePost( window[, mask, masked]);
-%   Detailed explanation goes here
-if nargin < 1 || isempty(window)
-% 	error('No PTB window opened!');
-	window = Window();
-end
-if nargin < 2 || isempty(reps)
+function vowelReps( reps, rass, maskFirst, maskLast )
+% vowelReps( reps[, rass, mask, maskAll]);
+if nargin < 1 || isempty(reps)
 	reps = 6;
 end
-if nargin < 3 || isempty(mask)
-	mask = true; % false;
+if nargin < 2 || isempty(rass)
+	rass = true;
 end
-if nargin < 4 || isempty(maskAll)
-	maskAll = false;
+if nargin < 3 || isempty(maskFirst)
+	maskFirst = false;
+	% maskFirst = true;
+end
+if nargin < 4 || isempty(maskLast)
+	maskLast = false;
 end
 
-%% Draw window
-% window = Window();
 
-cycle	= mask;
-
-
-
+%% Run all repetitions
 for i = 1:reps
-	for a = 1:2
-		playVowel(a)
-
+	for a = 1:6
+		playVowel(a);
+		WaitSecs(0.5);
 		Beep();
 		
-		if(cycle || maskAll)
-			Masking(4);
-		end
+		WaitSecs(0.25);
 		
-		WaitSecs(4);
+		if (maskFirst && (i <= (reps / 2))) || (maskLast && (i > (reps / 2))) 		% 
+			if (rass)
+				audioGate(4, true);
+			else
+				Masking(4);
+			end
+		else
+			if (rass)
+				audioGate(4, false);
+			else
+				WaitSecs(4);
+			end
+		end
+		WaitSecs(1);
 	end
 	
-	if(mask && ~maskAll)					% If maskAll = FALSE, cycle switches on/off
-		cycle = ~cycle;
-	end
 	
 % 	error('end')							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 end

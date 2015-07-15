@@ -3,7 +3,6 @@ function  playStim( phrase, subject, match, stimulus )
 %   Detailed explanation goes here
 
 
-
 % Skip sync tests (to resolve sync errors) and suppress PTB logo "splash screen"
 Screen('Preference', 'SkipSyncTests', 2);
 Screen('Preference', 'VisualDebugLevel', 1);
@@ -27,6 +26,8 @@ win		= Screen('OpenWindow', screenNumber, black); % , rect);
 % ycenter		= screenY * 0.5;
 
 moviename	= getStim(phrase, subject, match, stimulus);
+
+% moviename = 'C:\toolbox\Stimulus\stim1.mov';
 
 %% Attempt to play video
 try

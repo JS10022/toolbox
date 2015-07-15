@@ -2,14 +2,15 @@ function Learning( window, phrase, subject, match, stimulus )
 %UNTITLED6 Summary of this function goes here
 %   Detailed explanation goes here
 
+%% Define variables
+ask		= 'Continue?\n';
+f		= false;
+t		= true;
 
-ask		= '\nDid the phase successfully complete? y or n \n';
-F		= false;
-T		= true;
+% DEBUG	= true;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+DEBUG	= false;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 
-DEBUG	= true;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% DEBUG	= false;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-
+%% Run phases
 for i = 1:5
 
 % 	break;									% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
@@ -21,14 +22,17 @@ for i = 1:5
 % 	reps = 2;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 	
 	
-	
+	begin = ['\n****** Beginning ' phase ' phase ******\n\n'];
+	fprintf (begin);	
+
+
 	
 	
 	switch(phase)
 	case 'baseline'
-		prompt(window, reps, phrase, subject, match, stimulus);			% reps = 10
+		prompt(window, reps, phrase, subject, match, stimulus, f, t);	% reps = 10
 	case 'learning'
-		prompt(window, reps, phrase, subject, match, stimulus, T);		% reps = 20, present stim each time = TRUE
+		prompt(window, reps, phrase, subject, match, stimulus, t);		% reps = 20, present stim each time = TRUE
 	case 'sustained_5'
 		for a = 1:2							% Runs first sust. learning 2 times
 			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 5
@@ -36,19 +40,25 @@ for i = 1:5
 	case 'sustained_10'
 		for a = 1:2							% Runs second sust. learning 2 times
 			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 10
-			input('Press ENTER to continue');
+			
+			if (a == 1)
+				input('\n	Press ENTER to continue\n');
+			end
 		end
 	case 'proficiency'
-		prompt(window, reps, phrase, subject, match, stimulus, F, T);	% reps = 10
+		prompt(window, reps, phrase, subject, match, stimulus, f, f, t);	% reps = 10
 	otherwise,
 		error('Bruh, you didn''t enter a phase');
 	end
 	
 	
-	
+	endof = ['\n****** End of "' phase '" phase ******\n\n'];
+	fprintf (endof);
 	
 	cont = input(ask, 's');					% === Asks the proctor to continue ===
-	if(cont == 'y')
+	if(cont == 'n')
+											% === "Do nothing" (i.e. the while loop will restart) ===
+	else
 		break;								% === Breaks while loop if yes, else repeats ===
 	end
 	

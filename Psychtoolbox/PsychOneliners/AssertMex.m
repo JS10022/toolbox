@@ -52,7 +52,7 @@ if IsOctave
         return;
     end
     
-    octFilename = [ myName(1:end-1) 'mex'];
+    octFilename = [ myName(1:end - 1) 'mex'];
     fprintf('\nIn place of the expected Octave .mex binary plugin file this placeholder file was executed:\n\n');
     fprintf(['  ' myName '\n\n']);
     fprintf('This MEX file seems to be missing or inaccessible on your Octave path or it is dysfunctional:\n\n')
@@ -129,16 +129,16 @@ if isempty(inputNames) || ismember(computer, inputNames)
     end
     
     % Generate error strings
-    extensionNameIndex=find(streq(computer,okNames));
-    extensionName=mexExtensions{extensionNameIndex}; %#ok<FNDSB>
-    mExtensionIndices=strfind('.m',callerName);
+    extensionNameIndex	= find(streq(computer,okNames));
+    extensionName		= mexExtensions{extensionNameIndex}; %#ok<FNDSB>
+    mExtensionIndices	= strfind('.m', callerName);
     if ~isempty(mExtensionIndices)
-        termExtension=mExtensionIndices(end);
-        mexFilenameHead=callerName(1:termExtension-1);
+        termExtension	= mExtensionIndices(end);
+        mexFilenameHead	= callerName(1:termExtension-1);
     else
-        mexFilenameHead = callerName;
+        mexFilenameHead	= callerName;
     end
-    mexFilename=[mexFilenameHead '.' extensionName];
+    mexFilename = [mexFilenameHead '.' extensionName];
     fprintf('\nIn place of the expected mex file this placeholder file was executed:\n\n');
     fprintf(['  ' callerName '\n\n']);
     fprintf('This mex file seems to be missing or inaccessible on your Matlab path or it is dysfunctional:\n\n')

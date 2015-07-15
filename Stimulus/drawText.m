@@ -1,6 +1,10 @@
-function drawText( window, text )
+function drawText( window, text, seconds )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
+if nargin < 3 || isempty(seconds)
+% 	seconds = 35;
+	seconds = 3;
+end
 
 %% Define a few things
 
@@ -29,7 +33,7 @@ null		= ' ';
 	
 	
 	% Give the subject a few seconds to read the prompt
-	WaitSecs(4);
+	WaitSecs(seconds);
 	
 	% Clear the screen
 	DrawFormattedText(window, null, 'center', centerY, white);

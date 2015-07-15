@@ -32,6 +32,8 @@ end
 % Wait until user releases keys on keyboard:
 KbReleaseWait;
 
+
+
 % Select screen for display of movie:
 screenid = max(Screen('Screens'));
 
