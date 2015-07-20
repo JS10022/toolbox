@@ -217,22 +217,50 @@ t		= true;
 bobo	= 'Buy Bobo a yo-yo';
 yoyo	= 'I owe you a yo-yo';
 wait	= '\n	Press ENTER to continue\n';
-subject		= '000_NH';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+subject		= 'DEBUG';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 match		= 'Matched';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 stimulus	= 'Auditory';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-phraseNum	= 3;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+phraseNum	= 1;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 phrase		= getPhrase(phraseNum);
 phrase2		= getPhrase(phraseNum + 1);
-% window		= Window();
+% window		= Window;
 ortho		= getOrtho(phrase);
 ortho2		= getOrtho(phrase2);
 phase		= getPhase(5);
+reps		= 1;
 
+% root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\RASS Stimuli\';
+% outfile = [root 'DEBUG' '\' subject ' - ' match ' - ' stimulus '.txt'];
+% diary(outfile);
 
-root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\RASS Stimuli\';
-outfile = [root 'DEBUG' '\' subject ' - ' match ' - ' stimulus '.txt'];
+root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\Experiments\';
+rass	= ' RASS Stimuli\';
+% outfile = [root match rass '\' stimulus '\' subject '\' subject ' - ' match ' - ' stimulus '.txt'];
+% diary(outfile);
+
+outfile = [root subject '\' subject ' - ' match ' - ' stimulus '.txt'];
+
+if(exist([root subject], 'file') == 0)
+	mkdir([root subject]);
+end
+
 diary(outfile);
 
+fprintf(['\n === Information ===\n'		...
+			'\nSubject:\t'	subject		...
+			'\nMatch:\t\t'	match		...
+			'\nStimulus:\t'	stimulus	...
+			'\nPhrase 1:\t'	phrase		...
+			'\t\t('			ortho ')'	...
+			'\nPhrase 2:\t'	phrase2		...
+			'\t\t('			ortho2		...
+			')\n\n\n'		]);
+
+
+
+% window		= Window;
+
+fprintf('\n\n');
 
 addpath c:/speechres/commonmcode
 cds('audapter_matlab');
@@ -264,36 +292,56 @@ Audapter(3, 'framelen', 256);
 % ask		= ['\nDid "' phase '" successfully complete? y or n \n'];
 % ask		= ['\nDid "' phase '" successfully complete? \n'];
 % 	fprintf (ask);
-%}
+
 
 
 % Beep();
 
 % prePost(window, bobo, 5, t, f, t);
 
-info = ['\nSubject:\t'	subject		...
-		'\nMatch:\t\t'	match		...
-		'\nStimulus:\t'	stimulus	...
-		'\nPhrase 1:\t'	phrase		...
-		'\t\t('			ortho ')'	...
-		'\nPhrase 2:\t'	phrase2		...
-		'\t\t('			ortho2	')\n\n\n'];
+% info = ['\nSubject:\t'	subject		...
+% 		'\nMatch:\t\t'	match		...
+% 		'\nStimulus:\t'	stimulus	...
+% 		'\nPhrase 1:\t'	phrase		...
+% 		'\t\t('			ortho ')'	...
+% 		'\nPhrase 2:\t'	phrase2		...
+% 		'\t\t('			ortho2	')\n\n\n'];
 % fprintf(endof);
 % fprintf(info);
 
-fprintf(['\nSubject:\t'	subject		...
-		'\nMatch:\t\t'	match		...
-		'\nStimulus:\t'	stimulus	...
-		'\nPhrase 1:\t'	phrase		...
-		'\t\t('			ortho ')'	...
-		'\nPhrase 2:\t'	phrase2		...
-		'\t\t('			ortho2	')\n\n\n']);
+% fprintf(['\nSubject:\t'	subject		...
+% 		'\nMatch:\t\t'	match		...
+% 		'\nStimulus:\t'	stimulus	...
+% 		'\nPhrase 1:\t'	phrase		...
+% 		'\t\t('			ortho ')'	...
+% 		'\nPhrase 2:\t'	phrase2		...
+% 		'\t\t('			ortho2	')\n\n\n']);
 
-
+% num = num2str(phraseNum);
+% 
+% fprintf(['\nSubject:\t'	subject		...
+% 		'\nMatch:\t\t'	match		...
+% 		'\nStimulus:\t'	stimulus	...
+% 		'\nPhrase 1:\t'	phrase		...
+% 		'\t\t('			ortho ')'	...
+% 		'\nPhrase 2:\t'	phrase2		...
+% 		'\t\t('			ortho2	')\n\n\n']);
+% 
+% 	Beep;
 
 % fprintf(['\n****** End of "' phase '" phase ******\n\n']);
 
 % '\n****** End of " %t', phase, '%s" phase ******\n\n');
+%}
+
+% prompt( window, 1, phrase, subject, match, stimulus)
+% prompt(window, reps, phrase, subject, match, stimulus, t);	% reps = 10
+
+% prompt(window, reps, phrase, subject, match, stimulus);		% reps = 5
+
+% prompt(window, reps, phrase, subject, match, stimulus);		% reps = 10
+		
+% prompt(window, reps, phrase, subject, match, stimulus, f, f, t);	% reps = 10
 
 %{
 % ask		= 'Continue?\n';
@@ -306,19 +354,19 @@ fprintf(['\nSubject:\t'	subject		...
 %}	
 % pause(2)
 	
-	
+	 vowelReps(4, f, f, t);
 
 
-% begin = ['\n****** Beginning "' phase '" phase ******\n\n'];
-% fprintf (begin);	
+begin = ['\n****** Beginning "' phase '" phase ******\n\n'];
+fprintf (begin);	
+
+
+audioStim( phrase, subject, match, stimulus )
 
 
 
-
-
-
-close all;
-clear all;
+% close all;
+% clear all;
 sca;
 
 diary off;

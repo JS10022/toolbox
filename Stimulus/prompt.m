@@ -78,7 +78,7 @@ for i = 1:reps
 	
 	Beep();	
 	
-	WaitSecs(0.25);
+	% WaitSecs(0.25);
 	
 	if (isProficiency || isBaseline)
 		audioGate(6, true);							% Feedback with masking

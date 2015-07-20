@@ -16,12 +16,15 @@ if nargin < 4 || isempty(stimulus)
 end
 
 %% Creates file path name
-root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\RASS Stimuli\';
+% root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\RASS Stimuli\';
+root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\';
 slash	= '\';
 wav		= '.wav';
+rass	= ' RASS Stimuli';
 
 % file = strcat(root, subject, slash, phrase, wav);
 % file = strcat(root, subject, slash, match, slash, stimulus, slash, phrase, wav);
-file = strcat(root, subject, slash, match, slash, phrase, wav);
+% file = strcat(root, match, slash, subject, slash, phrase, wav);
+file = [root match rass '\' stimulus '\' subject '\' phrase wav];
 
 

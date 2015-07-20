@@ -69,29 +69,35 @@ wait	= '\n	Press ENTER to continue\n';
 
 %% Output Experiment info to log file
 
-fprintf(['\nSubject:\t'	subject		...
-		'\nMatch:\t\t'	match		...
-		'\nStimulus:\t'	stimulus	...
-		'\nPhrase 1:\t'	phrase		...
-		'\t\t('			ortho ')'	...
-		'\nPhrase 2:\t'	phrase2		...
-		'\t\t('			ortho2	')\n\n\n']);
+fprintf(['\n\n === Information ===\n\n' ...
+			'\nSubject:\t'	subject		...
+			'\nMatch:\t\t'	match		...
+			'\nStimulus:\t'	stimulus	...
+			'\nPhrase 1:\t'	phrase		...
+			'\t\t('			ortho ')'	...
+			'\nPhrase 2:\t'	phrase2		...
+			'\t\t('			ortho2		...
+			')\n\n\n'		]);
 	
 
 %% Pre-Experiment
 % %{
 
+disp('Prompting Directive 1');
 Directive(1);
+disp('Prompting Directive 2');
 Directive(2);
 
-drawText(window, 'Please read Caterpillar', 60);
 disp('Have the subject read the Caterpillar script');
+drawText(window, 'Please read Caterpillar', 60);
 input(wait);
 
+disp('Prompting Directive 3');
 Directive(3);
 vowelReps(6, f, f, t);					% Run vowelReps with last 3 cycles masked, no RASS
 
 
+disp('Prompting Directive 4');
 Directive(4);
 input(wait);
 prePost(window, yoyo, 10, f, f, t);		% Prompt yoyo with last 5 masked, no RASS
@@ -102,11 +108,13 @@ prePost(window, bobo, 10, f, f, t);		% Prompt bobo with last 5 masked, no RASS
 %%%%%%%%%%%%% Start RASS here %%%%%%%%%%%%% 
 
 
+disp('Prompting Directive 5');
 Directive(5);
 input(wait);
 vowelReps(6, t, f, t);					% Run vowelReps with RASS, last 3 cycles masked
 
 
+disp('Prompting Directive 6');
 Directive(6);
 input(wait);
 prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
@@ -117,6 +125,7 @@ prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 %% Run First Phase of Experiment 
 % %{
 
+disp('Prompting Directive 7');
 Directive(7);
 % input(wait);
 input('\n	Press ENTER to begin Learning Phase');
@@ -131,20 +140,24 @@ Generalization( window, phrase2, subject, match, stimulus )
 
 % Begin Post Assessment - Phase 1
 
+disp('Prompting Directive 8');
 Directive(8);
 vowelReps(6, t, t, f);					% Run vowelReps with RASS and first 3 cycles masked
 
 
+disp('Prompting Directive 9');
 Directive(9);
 input(wait);
 prePost(window, bobo, 6, t, t, f);		% Prompt bobo with RASS and last 3 reps masked
 
 
+disp('Prompting Directive 10');
 Directive(10);
 input(wait);
 vowelReps(3, f, t, t);					% Run vowelReps with full masking
 
 
+disp('Prompting Directive 11');
 Directive(11);
 input(wait);
 prePost(window, yoyo, 5, f, t, t);		% Prompt yoyo with full masking, no RASS

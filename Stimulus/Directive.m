@@ -12,9 +12,9 @@ playblocking(player);
 WaitSecs(1.5);
 
 
-% play(player);
-% WaitSecs(5);
-% stop(player);
+% play(player);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+% WaitSecs(1);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+% stop(player);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 
 end
 

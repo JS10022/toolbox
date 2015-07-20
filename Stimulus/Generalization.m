@@ -3,7 +3,7 @@ function Generalization( window, phrase, subject, match, stimulus )
 %   Detailed explanation goes here
 
 %% Define variables
-ask		= 'Continue?\n';
+ask		= '\nContinue?\n';
 f		= false;
 t		= true;
 DEBUG	= false;
@@ -15,11 +15,13 @@ for i = 1:5
 % 	break;									% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 % 	reps = 2;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 	
+	
 	while(1)								% === Allows for re-running phases if needed
 	phase	= getPhase(i);
 	reps	= getReps(phase);
 	
-	
+	begin = ['\n\n****** Beginning Generalization "' phase '" phase ******\n\n'];
+	fprintf (begin);
 	
 		
 	switch(phase)
@@ -40,6 +42,7 @@ for i = 1:5
 	endof = ['\n****** End of "' phase '" phase ******\n\n'];
 	fprintf (endof);
 	
+	if(pha)
 	cont = input(ask, 's');					% === Asks the proctor to continue ===
 	if(cont == 'n')
 											% === "Do nothing" (i.e. the while loop will restart) ===

@@ -3,7 +3,7 @@ function Learning( window, phrase, subject, match, stimulus )
 %   Detailed explanation goes here
 
 %% Define variables
-ask		= 'Continue?\n';
+ask		= '\nContinue?\n';
 f		= false;
 t		= true;
 
@@ -14,20 +14,18 @@ DEBUG	= false;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 for i = 1:5
 
 % 	break;									% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+% 	reps = 2;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 	
 	while(1)								% === Allows for re-running phases if needed
 	phase	= getPhase(i);
 	reps	= getReps(phase);
 	
-% 	reps = 2;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-	
-	
-	begin = ['\n****** Beginning ' phase ' phase ******\n\n'];
-	fprintf (begin);	
+	begin	= ['\n\n****** Beginning Learning "' phase '" phase ******\n\n'];
+	endof	= ['\n****** End of Learning "' phase '" phase ******\n\n'];
+
+	fprintf (begin);
 
 
-	
-	
 	switch(phase)
 	case 'baseline'
 		prompt(window, reps, phrase, subject, match, stimulus, f, t);	% reps = 10
@@ -36,13 +34,18 @@ for i = 1:5
 	case 'sustained_5'
 		for a = 1:2							% Runs first sust. learning 2 times
 			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 5
+			if (a == 1)
+				fprintf (['*** "' phase '" - Part 2 ***\n']);
+			end
 		end
 	case 'sustained_10'
 		for a = 1:2							% Runs second sust. learning 2 times
 			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 10
 			
 			if (a == 1)
+				fprintf (endof);
 				input('\n	Press ENTER to continue\n');
+				fprintf (['\n\n****** Beginning Learning"' phase '" phase - Part 2 ******\n\n']);	
 			end
 		end
 	case 'proficiency'
@@ -52,7 +55,7 @@ for i = 1:5
 	end
 	
 	
-	endof = ['\n****** End of "' phase '" phase ******\n\n'];
+	
 	fprintf (endof);
 	
 	cont = input(ask, 's');					% === Asks the proctor to continue ===
@@ -62,12 +65,13 @@ for i = 1:5
 		break;								% === Breaks while loop if yes, else repeats ===
 	end
 	
-	end
+	end										% === End of while loop ===
 	
 	
 	if(DEBUG)								% ~~~ Allows for interruption of test ~~~
 		cont = input('Exit? \n', 's');
 		if(cont == 'y')
+			sca;
 			error('DEBUG exit')
 		end
 	end

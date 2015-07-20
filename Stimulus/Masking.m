@@ -12,7 +12,6 @@ player	= audioplayer(masking, 28000);
 
 play(player);
 WaitSecs(seconds);
-% pause(seconds);
 stop(player);
 
 end

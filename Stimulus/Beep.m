@@ -4,12 +4,11 @@ function Beep()
 
 file	= 'C:\toolbox\Stimulus\beep.wav';
 % beep	= audioread(file);
-tone	= 28000;									% === 28 MHz ===
-
-% sound(beep, tone);
-
+tone	= 28000;									% === 28 KHz ===
 audio	= audioread(file);
 player	= audioplayer(audio, tone);
+
+% sound(beep, tone);
 
 playblocking(player);
 
