@@ -65,7 +65,7 @@ for i = 1:reps
 				% Displays RASS output
 				playStim(phrase, subject, match, stimulus);
 				
-				window = Window();
+				window = Window;
 				
 				WaitSecs(5);
 								
@@ -76,19 +76,13 @@ for i = 1:reps
 			error('No stimuli entered');
 	end
 	
-	Beep();	
-	
-	% WaitSecs(0.25);
+	Beep;
 	
 	if (isProficiency || isBaseline)
 		audioGate(6, true);							% Feedback with masking
 	else
 		audioGate(6, false);						% Feedback without masking
 	end
-	
-% 	WaitSecs(6);
 end
-	
-
 end
 

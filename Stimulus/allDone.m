@@ -1,4 +1,4 @@
-function  playStim( ) % phrase, subject, match, stimulus )
+function  allDone( )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -13,25 +13,12 @@ screenNumber = max(Screen('Screens'));
 % Define black & white
 black	= BlackIndex(screenNumber);
 
-% rect = Screen('WindowSize', screenNumber);
-
-
-
-win		= Screen('OpenWindow', screenNumber, black); % , rect);
-
-
-
-
-% Variables
-% ycenter		= screenY * 0.5;
-
-% moviename	= getStim(phrase, subject, match, stimulus);
+win		= Screen('OpenWindow', screenNumber, black);
 
 moviename = 'C:\Users\SpeechLab\Videos\videoplayback.mp4';
 
 %% Attempt to play video
 try
-% 	error(moviename)
 	movie = Screen('OpenMovie', win, moviename);
 	Screen('PlayMovie', movie, 1);
 	

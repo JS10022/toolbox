@@ -23,7 +23,7 @@ for i = 1:5
 	begin = ['\n\n****** Beginning Generalization "' phase '" phase ******\n\n'];
 	fprintf (begin);
 	
-		
+	
 	switch(phase)
 	case 'baseline'
 		prompt(window, reps, phrase, subject, match, stimulus, f, t);		% reps = 10
@@ -39,10 +39,9 @@ for i = 1:5
 		error('Bruh, you didn''t enter a phase');
 	end
 	
-	endof = ['\n****** End of "' phase '" phase ******\n\n'];
+	endof = ['\n****** End of "' phase '" phase ******\n\n\n'];
 	fprintf (endof);
-	
-	if(pha)
+
 	cont = input(ask, 's');					% === Asks the proctor to continue ===
 	if(cont == 'n')
 											% === "Do nothing" (i.e. the while loop will restart) ===

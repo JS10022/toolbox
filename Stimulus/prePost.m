@@ -68,7 +68,7 @@ for i = 1:reps
 
 end
 
-	endof = ['\n****** End of "' phrase '" ******\n\n'];
+	endof = ['\n****** End of "' phrase '" ******\n\n\n'];
 	fprintf (endof);
 end
 

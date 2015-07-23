@@ -25,6 +25,7 @@ rass		= ' RASS Stimuli\';
 outfile		= [root 'DEBUG' '\' 'DEBUG' ' - ' match ' - ' stimulus '.txt'];
 
 %% Log file
+% if(logfile)
 if(exist([root subject], 'file') == 0)
 	mkdir([root subject]);
 end
@@ -42,7 +43,7 @@ fprintf(['\n === Information ===\n'		...
 			')\n\n\n'		]);
 
 fprintf('\n\n');
-
+% end
 %% Set up Audapter
 addpath c:/speechres/commonmcode
 cds('audapter_matlab');
@@ -59,6 +60,9 @@ Audapter(3, 'framelen', 256);
 
 % Learning( window, phrase, subject, match, stimulus );
 
+% Audapter playTone;
+
+audioGate( 5, f )
 
 
 

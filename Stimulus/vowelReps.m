@@ -42,17 +42,17 @@ for i = 1:reps
 		% end
 		
 		playVowel(a);
-		WaitSecs(0.5);
+		WaitSecs(0.4);
 		Beep;
-		
-		
-		
+	
+	
+	
 		% WaitSecs(0.10);
 		
 		if (maskFirst && (i <= half)) || (maskLast && (i > half)) 		% 
 		
 			if (rass)
-				WaitSecs(0.10);
+				% WaitSecs(0.10);
 				audioGate(4, true);
 			else
 				Masking(4);
@@ -67,7 +67,7 @@ for i = 1:reps
 		end
 		WaitSecs(1);
 	end
-		
+	
 	if(i == half)
 		knob = '\n\t=== Halfway Point ===\n\n';
 		fprintf (knob);
@@ -77,7 +77,7 @@ for i = 1:reps
 % 	error('end')							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 end
 
-	endof = '\n****** End of 6-vowel production ******\n\n';
+	endof = '\n****** End of 6-vowel production ******\n\n\n';
 	fprintf (endof);
 	
 end

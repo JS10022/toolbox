@@ -2,17 +2,17 @@
 
 % close all;
 % clear all;
-sca; 
+sca;
 
 %% Create & draw window
-window = Window();
+window = Window;
 
 
 %% Get subject info and phrase
 % [ subject, match, stimulus, phraseNum ] = getSubjInfo;
 
 
-subject		= '015_AB';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+subject		= '018_RU';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 match		= 'Matched';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 % stimulus	= 'Visual';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 stimulus	= 'Auditory';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
@@ -37,7 +37,7 @@ ortho	= getOrtho(phrase);
 ortho2	= getOrtho(phrase2);
 
 
-%% ~~~ Debug & development stuff ~~~ 
+%% ~~~ Debug & development stuff ~~~  
 root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\Experiments\';
 outfile = [root subject '\' subject ' - ' match ' - ' stimulus '.txt'];
 
@@ -57,7 +57,7 @@ f		= false;
 t		= true;
 bobo	= 'Buy Bobo a yo-yo';
 yoyo	= 'I owe you a yo-yo';
-wait	= '\n\tPress ENTER to continue\n';
+wait	= '\n	Press ENTER to continue\n';
 
 
 %% Output Experiment info to log file
@@ -71,11 +71,9 @@ fprintf(['\t=== Information ===\n'		...
 			'\nPhrase 2:\t'	phrase2		...
 			'\t\t('			ortho2		...
 			')\n\n\n'		]);
-	
-		
-
 
 %% Set up Audapter
+
 fprintf('\n\n\t=== Audapter ===\n');
 addpath c:/speechres/commonmcode
 cds('audapter_matlab');
@@ -88,22 +86,25 @@ Audapter(3, 'framelen', 256);
 fprintf('\n\n');
 
 %% Pre-Experiment
-% %{
+%{
 
 fprintf('\nPrompting Directive 1\n');
 Directive(1);
 fprintf('Prompting Directive 2\n');
 Directive(2);
 
+
 fprintf('\nHave the subject read the Caterpillar script\n');
 drawText(window, 'Please read Caterpillar', 60);
 input(wait);
+% %}
 
+% %{
 fprintf('\nPrompting Directive 3\n');
 Directive(3);
 vowelReps(6, f, f, t);					% Run vowelReps with last 3 cycles masked, no RASS
 
-
+% %}
 fprintf('\nPrompting Directive 4\n');
 Directive(4);
 input(wait);
@@ -112,16 +113,16 @@ input(wait);
 prePost(window, bobo, 10, f, f, t);		% Prompt bobo with last 5 masked, no RASS
 
 
-fprintf('\n\n\t############ Start RASS here ############\n\n');
+fprintf('\n\n\t############ Start RASS here ############\n\n\n\n');
 
-
-fprintf('\n\nPrompting Directive 5\n');
-Directive(5);
-input(wait);
+%}
+% fprintf('\nPrompting Directive 5\n');
+% Directive(5);
+% input(wait);
 vowelReps(6, t, f, t);					% Run vowelReps with RASS, last 3 cycles masked
 
 
-fprintf('\n\nPrompting Directive 6\n');
+fprintf('\nPrompting Directive 6\n');
 Directive(6);
 input(wait);
 prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
@@ -132,20 +133,24 @@ prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 %% Run First Phase of Experiment 
 % %{
 
-fprintf('\n\nPrompting Directive 7\n');
+% --- Learning Phase --- %
+fprintf('\nPrompting Directive 7\n');
 Directive(7);
-% input(wait);
-input('\n\tPress ENTER to begin Learning Phase');
+input('\n	Press ENTER to begin Learning Phase');
+% fprintf('\n');
 Learning( window, phrase, subject, match, stimulus );
+%}
 
-%% Generalization Phase
+
+% --- Generalization Phase --- %
 Generalization( window, phrase2, subject, match, stimulus );
 
-%}
-% Begin Post Assessment - Phase 1
 
-fprintf('\nPrompting Directive 8\n');
-% Directive(8);
+%% Begin Post Assessment - Phase 1
+% %{
+fprintf('\n\n\nPrompting Directive 8\n');
+Directive(8);
+input(wait);
 vowelReps(6, t, t, f);					% Run vowelReps with RASS and first 3 cycles masked
 
 
@@ -168,46 +173,12 @@ prePost(window, yoyo, 5, f, t, t);		% Prompt yoyo with full masking, no RASS
 prePost(window, bobo, 5, f, t, t);		% Prompt bobo with full masking, no RASS
 %}
 
-%% Set up Second Phase
-%{
-[phraseNum, stimulus] = nextPhase(phraseNum, stimulus);
 
-phrase	= getPhrase(phraseNum);
-
-input('Press ENTER to begin Second Phase');
-
-
-
-%% Run Second Phase of Experiment 
-% %{
-Directive(7);
-
-Learning( window, phrase, subject, match, stimulus );
-
-% Generalization Phase
-
-phrase	= getPhrase(phraseNum + 1);
-
-Generalization( window, phrase, subject, match, stimulus )
-
-% Begin Post Assessment - Phase 2
-% %{
-Directive(8);
-vowelReps(6, t, t, f);					% Run vowelReps with alternating masking
-
-Directive(9);
-prePost(window, bobo, 6, t);				% Run prePost with alternating masking
-
-Directive(10);
-vowelReps(3, f, t, t);					% Run vowelReps with masking
-
-Directive(11);
-prePost(window, yoyo, 5, f, t);				% Run prePost with masking
-prePost(window, bobo, 5, f, t);				% Run prePost with masking
-%}
 
 %% Housecleaning
 diary off;
 close all;
 clear all;
 sca;
+
+allDone;

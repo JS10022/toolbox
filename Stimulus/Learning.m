@@ -15,16 +15,15 @@ for i = 1:5
 
 % 	break;									% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 % 	reps = 2;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-	
+
 	while(1)								% === Allows for re-running phases if needed
 	phase	= getPhase(i);
 	reps	= getReps(phase);
 	
-	begin	= ['\n\n****** Beginning Learning "' phase '" phase ******\n\n'];
-	endof	= ['\n****** End of Learning "' phase '" phase ******\n\n'];
+	begin	= ['\n\n\n****** Beginning Learning "' phase '" phase ******\n\n'];
+	endof	= ['\n****** End of Learning "' phase '" phase ******\n\n\n'];
 
 	fprintf (begin);
-
 
 	switch(phase)
 	case 'baseline'
@@ -35,7 +34,7 @@ for i = 1:5
 		for a = 1:2							% Runs first sust. learning 2 times
 			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 5
 			if (a == 1)
-				fprintf (['*** "' phase '" - Part 2 ***\n']);
+				fprintf (['\n\t*** "' phase '" - Part 2 ***\n\n']);
 			end
 		end
 	case 'sustained_10'
@@ -44,8 +43,8 @@ for i = 1:5
 			
 			if (a == 1)
 				fprintf (endof);
-				input('\n	Press ENTER to continue\n');
-				fprintf (['\n\n****** Beginning Learning"' phase '" phase - Part 2 ******\n\n']);	
+				input(ask);
+				fprintf (['\n****** Beginning Learning "' phase '" phase - Part 2 ******\n\n']);	
 			end
 		end
 	case 'proficiency'
@@ -53,11 +52,9 @@ for i = 1:5
 	otherwise,
 		error('Bruh, you didn''t enter a phase');
 	end
-	
-	
-	
+
 	fprintf (endof);
-	
+
 	cont = input(ask, 's');					% === Asks the proctor to continue ===
 	if(cont == 'n')
 											% === "Do nothing" (i.e. the while loop will restart) ===
