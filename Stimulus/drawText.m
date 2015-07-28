@@ -11,8 +11,7 @@ end
 % Select the external screen
 screenNumber = max(Screen('Screens'));
 
-% Define black & white
-black	= BlackIndex(screenNumber);
+% Define white
 white	= WhiteIndex(screenNumber);
 
 % Get the size of the on screen window in pixels
@@ -20,7 +19,7 @@ white	= WhiteIndex(screenNumber);
 
 
 %% Variables
-centerY		= screenY * 0.5;
+centerY		= screenY * 0.35;
 null		= ' ';
 
 %% Display text

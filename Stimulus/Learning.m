@@ -44,7 +44,7 @@ for i = 1:5
 			if (a == 1)
 				fprintf (endof);
 				input(ask);
-				fprintf (['\n****** Beginning Learning "' phase '" phase - Part 2 ******\n\n']);	
+				fprintf (['\n\n****** Beginning Learning "' phase '" phase - Part 2 ******\n\n']);	
 			end
 		end
 	case 'proficiency'

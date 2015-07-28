@@ -20,7 +20,7 @@ for i = 1:5
 	phase	= getPhase(i);
 	reps	= getReps(phase);
 	
-	begin = ['\n\n****** Beginning Generalization "' phase '" phase ******\n\n'];
+	begin = ['\n\n\n****** Beginning Generalization "' phase '" phase ******\n\n'];
 	fprintf (begin);
 	
 	

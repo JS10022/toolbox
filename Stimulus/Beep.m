@@ -3,16 +3,12 @@ function Beep()
 % Information needed to open & play beep signal
 
 file	= 'C:\toolbox\Stimulus\beep.wav';
-% beep	= audioread(file);
+beep	= audioread(file);
 tone	= 28000;									% === 28 KHz ===
-audio	= audioread(file);
-player	= audioplayer(audio, tone);
-
-% sound(beep, tone);
+% audio	= audioread(file);
+player	= audioplayer(beep, tone);
 
 playblocking(player);
-
-% WaitSecs(0.25);
 
 end
 

@@ -12,11 +12,12 @@ window = Window;
 % [ subject, match, stimulus, phraseNum ] = getSubjInfo;
 
 
-subject		= '018_RU';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+subject		= '016_TP';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+% subject		= 'DEBUG';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 match		= 'Matched';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 % stimulus	= 'Visual';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 stimulus	= 'Auditory';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-pair		= 2;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+pair		= 1;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 
 switch(pair)
 	case 1
@@ -58,7 +59,8 @@ t		= true;
 bobo	= 'Buy Bobo a yo-yo';
 yoyo	= 'I owe you a yo-yo';
 wait	= '\n	Press ENTER to continue\n';
-
+img		= imread('caterpillar2.png');
+texture = Screen('MakeTexture', window, img);
 
 %% Output Experiment info to log file
 
@@ -86,7 +88,7 @@ Audapter(3, 'framelen', 256);
 fprintf('\n\n');
 
 %% Pre-Experiment
-%{
+% %{
 
 fprintf('\nPrompting Directive 1\n');
 Directive(1);
@@ -95,6 +97,7 @@ Directive(2);
 
 
 fprintf('\nHave the subject read the Caterpillar script\n');
+Screen('DrawTextures', window, texture, [0,-350,750,250]);
 drawText(window, 'Please read Caterpillar', 60);
 input(wait);
 % %}
@@ -105,6 +108,7 @@ Directive(3);
 vowelReps(6, f, f, t);					% Run vowelReps with last 3 cycles masked, no RASS
 
 % %}
+
 fprintf('\nPrompting Directive 4\n');
 Directive(4);
 input(wait);
@@ -115,10 +119,10 @@ prePost(window, bobo, 10, f, f, t);		% Prompt bobo with last 5 masked, no RASS
 
 fprintf('\n\n\t############ Start RASS here ############\n\n\n\n');
 
-%}
-% fprintf('\nPrompting Directive 5\n');
-% Directive(5);
-% input(wait);
+% %}
+fprintf('\nPrompting Directive 5\n');
+Directive(5);
+input(wait);
 vowelReps(6, t, f, t);					% Run vowelReps with RASS, last 3 cycles masked
 
 
@@ -128,7 +132,7 @@ input(wait);
 prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 
 
-%}
+% %}
 
 %% Run First Phase of Experiment 
 % %{
@@ -137,9 +141,10 @@ prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 fprintf('\nPrompting Directive 7\n');
 Directive(7);
 input('\n	Press ENTER to begin Learning Phase');
-% fprintf('\n');
+% %}
+
 Learning( window, phrase, subject, match, stimulus );
-%}
+% %}
 
 
 % --- Generalization Phase --- %
@@ -159,7 +164,7 @@ Directive(9);
 input(wait);
 prePost(window, bobo, 6, t, t, f);		% Prompt bobo with RASS and last 3 reps masked
 
-
+% %}
 fprintf('\nPrompting Directive 10\n');
 Directive(10);
 input(wait);

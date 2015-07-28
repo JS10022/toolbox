@@ -42,7 +42,7 @@ for i = 1:reps
 		% end
 		
 		playVowel(a);
-		WaitSecs(0.4);
+		WaitSecs(0.2);
 		Beep;
 	
 	

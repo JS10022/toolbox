@@ -43,20 +43,21 @@ else
 end
 
 if ischar(frequency)
-  if strcmp(lower(frequency), 'high') frequency = 1000; 
-  elseif strcmp(lower(frequency), 'med') frequency = 400;
-  elseif strcmp(lower(frequency), 'medium') frequency = 400;
-  elseif strcmp(lower(frequency), 'low') frequency = 220;
+  if		strcmp(lower(frequency), 'high')	frequency = 1000; 
+  elseif	strcmp(lower(frequency), 'med')		frequency = 400;
+  elseif	strcmp(lower(frequency), 'medium')	frequency = 400;
+  elseif	strcmp(lower(frequency), 'low')		frequency = 220;
   end
 end
 
-sampleRate = Snd('DefaultRate');
+sampleRate	= Snd('DefaultRate');
 
-nSample = sampleRate*durationSec;
-soundVec = sin(2*pi*frequency*(1:nSample)/sampleRate);
+nSample		= sampleRate * durationSec;
+soundVec	= sin(2 * pi * frequency * (1:nSample) / sampleRate);
 
 % Scale down the volume
-soundVec = soundVec * fVolume;
+soundVec	= soundVec * fVolume;
+
 % sound(soundVec);
 try % this part sometimes crashes for unknown reasons. If it happens replace sound with normal beep
     

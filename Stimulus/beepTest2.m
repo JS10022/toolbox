@@ -62,15 +62,38 @@ Audapter(3, 'framelen', 256);
 
 % Audapter playTone;
 
-audioGate( 5, f )
+% audioGate( 5, f )
+
+% theImage = imread('caterpillar2.png');
+
+% Make the image into a texture
+% imageTexture = Screen('MakeTexture', window, theImage);
+
+% Get the size of the image
+% [s1, s2, s3] = size(theImage);
+
+% Get the aspect ratio of the image. We need this to maintain the aspect
+% ratio of the image when we draw it different sizes. Otherwise, if we
+% don't match the aspect ratio the image will appear warped / stretched
+% aspectRatio = s2 / s1;
 
 
+% Screen('DrawTextures', window, imageTexture, [0,-350,750,250]);
+											%[, height, width, v pos]
+											
 
+	% Draw all the text in one go
+% 	drawText(window, 'Please read Caterpillar', 60);
 
+% Flip to the screen
+% Screen('Flip', window);
 
+% Wait for key press
+% KbStrokeWait;
 
+% audioGate( 10, f)
 
-
+% Beeper(400, 0.4, 0.15)
 
 %% Housecleaning
 diary off;
