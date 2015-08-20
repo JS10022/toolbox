@@ -4,7 +4,7 @@ function Beep()
 
 file	= 'C:\toolbox\Stimulus\beep.wav';
 beep	= audioread(file);
-tone	= 28000;									% === 28 KHz ===
+tone	= 28000;									% === 28 kHz ===
 % audio	= audioread(file);
 player	= audioplayer(beep, tone);
 

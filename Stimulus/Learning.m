@@ -1,4 +1,4 @@
-function Learning( window, phrase, subject, match, stimulus )
+function Learning( subj )
 %UNTITLED6 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -6,6 +6,7 @@ function Learning( window, phrase, subject, match, stimulus )
 ask		= '\nContinue?\n';
 f		= false;
 t		= true;
+phrase	= subj.pair{1};
 
 % DEBUG	= true;								% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 DEBUG	= false;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
@@ -27,19 +28,19 @@ for i = 1:5
 
 	switch(phase)
 	case 'baseline'
-		prompt(window, reps, phrase, subject, match, stimulus, f, t);	% reps = 10
+		prompt(reps, phrase, subj, f, t);	% reps = 10
 	case 'learning'
-		prompt(window, reps, phrase, subject, match, stimulus, t);		% reps = 20, present stim each time = TRUE
+		prompt(reps, phrase, subj, t);		% reps = 20, present stim each time = TRUE
 	case 'sustained_5'
 		for a = 1:2							% Runs first sust. learning 2 times
-			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 5
+			prompt(reps, phrase, subj);		% reps = 5
 			if (a == 1)
 				fprintf (['\n\t*** "' phase '" - Part 2 ***\n\n']);
 			end
 		end
 	case 'sustained_10'
 		for a = 1:2							% Runs second sust. learning 2 times
-			prompt(window, reps, phrase, subject, match, stimulus);		% reps = 10
+			prompt(reps, phrase, subj);		% reps = 10
 			
 			if (a == 1)
 				fprintf (endof);
@@ -48,7 +49,7 @@ for i = 1:5
 			end
 		end
 	case 'proficiency'
-		prompt(window, reps, phrase, subject, match, stimulus, f, f, t);	% reps = 10
+		prompt(reps, phrase, subj, f, f, t);	% reps = 10
 	otherwise,
 		error('Bruh, you didn''t enter a phase');
 	end

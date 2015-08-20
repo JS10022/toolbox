@@ -1,10 +1,10 @@
 function [ ortho ] = getOrtho( phrase )
 % Returns the phrase to be presented to the subject
-
-	switch(phrase)
-		case 'ja biau bue'
+for i = 1:2
+	switch(phrase(i))
+		case 'phrase 1'
 			ortho	= 'Yah bee~ow boo~ae';
-		case 'je buai bai'
+		case 'phrase 2'
 			ortho	= 'Yay boo~eye bye';
 		case 'ji beau bea'
 			ortho	= 'Yee bae~ow bae~ah';

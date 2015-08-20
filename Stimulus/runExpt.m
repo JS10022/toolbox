@@ -4,19 +4,17 @@
 % clear all;
 sca;
 
-%% Create & draw window
-window = Window;
 
 
 %% Get subject info and phrase
-% [ subject, match, stimulus, phraseNum ] = getSubjInfo;
+subj = getSubjInfo;
 
-
-subject		= '016_TP';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% subject		= 'DEBUG';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+%{
+% subject		= '016_TP';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+subject		= 'DEBUG';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 match		= 'Matched';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% stimulus	= 'Visual';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-stimulus	= 'Auditory';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+stimulus	= 'Visual';						% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+% stimulus	= 'Auditory';					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 pair		= 1;							% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 
 switch(pair)
@@ -31,25 +29,22 @@ switch(pair)
 	otherwise
 		error('Invalid input.  Must be between 1-4.');
 end
+%}
 
-phrase	= getPhrase(phraseNum);
-phrase2	= getPhrase(phraseNum + 1);
-ortho	= getOrtho(phrase);
-ortho2	= getOrtho(phrase2);
+
+phrase	= subj.pair;
+ortho	= subj.pair;	% getOrtho(phrase);			% ### TODO - Fix getOrtho ### %
 
 
 %% ~~~ Debug & development stuff ~~~  
-root	= 'C:\Users\SpeechLab\Google Drive\SRP 2015\Experiments\';
-outfile = [root subject '\' subject ' - ' match ' - ' stimulus '.txt'];
+root	= dataDir;
+outfile = [root subj.id '\log.txt'];
 
-if(exist([root subject], 'file') == 0)
-	mkdir([root subject]);
+if(exist([root subj.id], 'file') == 0)
+	mkdir([root subj.id]);
 end
 
 diary(outfile);
-
-% DEBUG	= true;
-DEBUG	= false;
 
 
 %% Define some variables
@@ -59,50 +54,47 @@ t		= true;
 bobo	= 'Buy Bobo a yo-yo';
 yoyo	= 'I owe you a yo-yo';
 wait	= '\n	Press ENTER to continue\n';
-img		= imread('caterpillar2.png');
-texture = Screen('MakeTexture', window, img);
 
 %% Output Experiment info to log file
-
+%{
 fprintf(['\t=== Information ===\n'		...
-			'\nSubject:\t'	subject		...
-			'\nMatch:\t\t'	match		...
-			'\nStimulus:\t'	stimulus	...
-			'\nPhrase 1:\t'	phrase		...
-			'\t\t('			ortho ')'	...
-			'\nPhrase 2:\t'	phrase2		...
-			'\t\t('			ortho2		...
+			'\nSubject:\t'	subj.id		...
+			'\nMatch:\t\t'	subj.match	...
+			'\nStimulus:\t'	subj.stim	...
+			'\nPhrase 1:\t'	phrase(1)	...
+			'\t\t('			ortho(1) ')'...
+			'\nPhrase 2:\t'	phrase(2)	...
+			'\t\t('			ortho(2)	...
 			')\n\n\n'		]);
-
+%}
 %% Set up Audapter
 
 fprintf('\n\n\t=== Audapter ===\n');
 addpath c:/speechres/commonmcode
 cds('audapter_matlab');
 Audapter('deviceName', 'AudioBox');
-Audapter(3, 'srate', 12000);
+Audapter(3, 'srate', 	11025);
 Audapter(3, 'downfact', 4);
-Audapter(3, 'framelen', 256);
+Audapter(3, 'framelen', 128);
+Audapter(3, 'rampLen', 0.085);
 
 
 fprintf('\n\n');
 
 %% Pre-Experiment
-% %{
+%{
 
 fprintf('\nPrompting Directive 1\n');
 Directive(1);
 fprintf('Prompting Directive 2\n');
 Directive(2);
+%}
 
-
-fprintf('\nHave the subject read the Caterpillar script\n');
-Screen('DrawTextures', window, texture, [0,-350,750,250]);
-drawText(window, 'Please read Caterpillar', 60);
+Caterpillar( );
 input(wait);
 % %}
 
-% %{
+%{
 fprintf('\nPrompting Directive 3\n');
 Directive(3);
 vowelReps(6, f, f, t);					% Run vowelReps with last 3 cycles masked, no RASS
@@ -112,9 +104,9 @@ vowelReps(6, f, f, t);					% Run vowelReps with last 3 cycles masked, no RASS
 fprintf('\nPrompting Directive 4\n');
 Directive(4);
 input(wait);
-prePost(window, yoyo, 10, f, f, t);		% Prompt yoyo with last 5 masked, no RASS
+prePost(yoyo, 10, f, f, t);		% Prompt yoyo with last 5 masked, no RASS
 input(wait);
-prePost(window, bobo, 10, f, f, t);		% Prompt bobo with last 5 masked, no RASS
+prePost(bobo, 10, f, f, t);		% Prompt bobo with last 5 masked, no RASS
 
 
 fprintf('\n\n\t############ Start RASS here ############\n\n\n\n');
@@ -129,7 +121,7 @@ vowelReps(6, t, f, t);					% Run vowelReps with RASS, last 3 cycles masked
 fprintf('\nPrompting Directive 6\n');
 Directive(6);
 input(wait);
-prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
+prePost(bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 
 
 % %}
@@ -141,14 +133,14 @@ prePost(window, bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 fprintf('\nPrompting Directive 7\n');
 Directive(7);
 input('\n	Press ENTER to begin Learning Phase');
-% %}
+%}
 
-Learning( window, phrase, subject, match, stimulus );
+Learning( subj );
 % %}
 
 
 % --- Generalization Phase --- %
-Generalization( window, phrase2, subject, match, stimulus );
+Generalization( subj );
 
 
 %% Begin Post Assessment - Phase 1
@@ -162,7 +154,7 @@ vowelReps(6, t, t, f);					% Run vowelReps with RASS and first 3 cycles masked
 fprintf('\nPrompting Directive 9\n');
 Directive(9);
 input(wait);
-prePost(window, bobo, 6, t, t, f);		% Prompt bobo with RASS and last 3 reps masked
+prePost(bobo, 6, t, t, f);		% Prompt bobo with RASS and last 3 reps masked
 
 % %}
 fprintf('\nPrompting Directive 10\n');
@@ -174,8 +166,8 @@ vowelReps(3, f, t, t);					% Run vowelReps with full masking
 fprintf('\nPrompting Directive 11\n');
 Directive(11);
 input(wait);
-prePost(window, yoyo, 5, f, t, t);		% Prompt yoyo with full masking, no RASS
-prePost(window, bobo, 5, f, t, t);		% Prompt bobo with full masking, no RASS
+prePost(yoyo, 5, f, t, t);		% Prompt yoyo with full masking, no RASS
+prePost(bobo, 5, f, t, t);		% Prompt bobo with full masking, no RASS
 %}
 
 

@@ -1,12 +1,12 @@
-function [ subject, match, stimulus, phraseNum ] = getSubjInfo()
+function [ subj ] = getSubjInfo( )
 %% Get experiment and subject info
 
-subNum = input('Please enter a subject number: ', 's');					% ===  ===
+%{
 while (length(subNum) < 3)
 	subNum = strcat('0', subNum);
 end
-subInit = upper(input('Please enter the subject''s initials: ', 's'));
-subject = strcat(subNum, '_', subInit);
+% subInit = upper(input('Please enter the subject''s initials: ', 's'));
+% subject = strcat(subNum, '_', subInit);
 
 
 match = upper(input('Will this be [M]atched or [U]nmatched? ', 's'));
@@ -47,6 +47,48 @@ switch(option)
 	otherwise
 		error('Invalid input.  Must be between 1-4.');
 end
+%}
+
+%% Parse subject ID number
+subNum = upper(input('Enter a subject number: ', 's'));	% === 6 digit subject ID ===
+
+
+
+% subj.number		= subNum(1:2);							% === XXoooo ===
+subj.id		= subNum;									% === XXXXXX ===
+
+if(subNum(3) == 'M')									% === ooXooo ===
+	subj.sex	= 'Male';
+elseif(subNum(3) == 'F')
+	subj.sex	= 'Female';
+else
+	error('Invalid sex');
+end
+
+if(subNum(4) == 'M')									% === oooXoo ===
+	subj.match	= 'Matched';
+elseif(subNum(4) == 'U')
+	subj.match	= 'Unmatched';
+else
+	error('Invalid RASS condition');
+end
+
+if(subNum(5) == 'A')									% === ooooXo ===
+	subj.stim	= 'Auditory';
+elseif(subNum(5) == 'V')
+	subj.stim	= 'Visual';
+else
+	error('Invalid stimulus type');
+end
+
+pair = str2double(subNum(6));
+if(pair > 0 && pair < 5)
+	subj.pair	= getPair(pair);						% === oooooX ===
+else
+	error('Invalid phrase pair');
+end
+
+
 
 
 end

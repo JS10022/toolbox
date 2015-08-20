@@ -18,8 +18,8 @@ end
 half = (reps / 2);
 
 
-	begin = '\n\n****** Beginning 6-vowel production ******\n\n';
-	fprintf (begin);
+begin = '\n\n****** Beginning 6-vowel production ******\n\n';
+fprintf (begin);
 	
 
 %% Run all repetitions
@@ -35,7 +35,7 @@ for i = 1:reps
 	fprintf('\n');
 	
 	
-	for a = 1:6
+	for a = 1:2
 		
 		% if(~rass)
 			% fprintf(['\tRep ' num2str(a) '\n']);

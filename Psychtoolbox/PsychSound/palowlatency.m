@@ -2,7 +2,7 @@ function PsychPortAudioTimingTest(exactstart, deviceid)
 
 
 % Force GetSecs and WaitSecs into memory to avoid latency later on:
-dummy=GetSecs;
+dummy = GetSecs;
 WaitSecs(0.1);
 
 % If 'exactstart' wasn't provided, assume user wants to test exact sync of
@@ -20,16 +20,16 @@ end
 deviceid
 
 % Request latency mode 2, which used to be the best one in our measurement:
-reqlatencyclass = 2; % class 2 empirically the best, 3 & 4 == 2
+reqlatencyclass = 2;		% class 2 empirically the best, 3 & 4 == 2
 
 % Requested output frequency, may need adaptation on some audio-hw:
-freq = 96000;        % Must set this. 96khz, 48khz, 44.1khz.
-buffersize = 64;     % Pointless to set this. Auto-selected to be optimal.
+freq		= 96000;        % Must set this. 96khz, 48khz, 44.1khz.
+buffersize	= 64;			% Pointless to set this. Auto-selected to be optimal.
 
 % Take hardware delay of MacBookPro into account: Assign it as bias.
 % Needs to determined via measurement once for each piece of audio
 % hardware:
-latbias = (30 / freq)
+latbias		= (30 / freq)
 %latbias = -0.001
 
 % Initialize driver, request low-latency preinit:
@@ -40,7 +40,7 @@ pahandle = PsychPortAudio('Open', deviceid, [], reqlatencyclass, freq, 2, buffer
 
 % Tell driver about hardwares inherent latency, determined via calibration
 % once:
-prelat = PsychPortAudio('LatencyBias', pahandle, latbias)
+prelat	= PsychPortAudio('LatencyBias', pahandle, latbias)
 postlat = PsychPortAudio('LatencyBias', pahandle)
 
 %mynoise = randn(2,freq * 0.1);
@@ -52,9 +52,9 @@ mynoise(2,:) = mynoise(1,:);
 PsychPortAudio('FillBuffer', pahandle, mynoise);
 
 % Setup display:
-screenid = max(Screen('Screens'));
-win = Screen('OpenWindow', screenid, 0);
-ifi = Screen('GetFlipInterval', win);
+screenid	= max(Screen('Screens'));
+win			= Screen('OpenWindow', screenid, 0);
+ifi			= Screen('GetFlipInterval', win);
 
 % Wait for keypress.
 while KbCheck; end;
@@ -91,18 +91,18 @@ for i=1:10
         audio_onset = PsychPortAudio('Start', pahandle, 1, 0, 0);
     end
 
-    t2 = GetSecs;
-    tstart = t2;
+    t2		= GetSecs;
+    tstart	= t2;
 
     % Spin-Wait until hw reports the first sample is played...
     offset = 0;
     while offset == 0
-        status = PsychPortAudio('GetStatus', pahandle);
-        offset = status.PositionSecs;
-        t3=GetSecs;
-        plat = status.PredictedLatency;
-        fprintf('Predicted Latency: %6.6f msecs.\n', plat*1000);
-        if offset>0
+        status	= PsychPortAudio('GetStatus', pahandle);
+        offset	= status.PositionSecs;
+        t3		= GetSecs;
+        plat	= status.PredictedLatency;
+        fprintf('Predicted Latency: %6.6f msecs.\n', plat * 1000);
+        if offset > 0
             break;
         end
         WaitSecs(0.001);
@@ -122,7 +122,7 @@ for i=1:10
     fprintf('Buffersize %i, xruns = %i, playpos = %6.6f secs.\n', status.BufferSize, status.XRuns, status.PositionSecs);
     fprintf('Screen    expects visual onset at %6.6f secs.\n', visual_onset);
     fprintf('PortAudio expects audio onset  at %6.6f secs.\n', audio_onset);
-    fprintf('Expected audio-visual delay    is %6.6f msecs.\n', (audio_onset - visual_onset)*1000.0);
+    fprintf('Expected audio-visual delay    is %6.6f msecs.\n', (audio_onset - visual_onset) * 1000.0);
 
     WaitSecs(0.3);
 

@@ -1,44 +1,48 @@
-function prompt( window, reps, phrase, subject, match, stimulus, stimEach, isBaseline, isProficiency)
-%	prompt( window, reps, phrase, subject, match, stimulus [, stimEach, isProficiency])
+function prompt( reps, phrase, subj, stimEach, isBaseline, isProf)
+%		prompt( reps, phrase, subject, match, stimulus [, stimEach, isBaseline, isProf])
 
 
 %% Handles omitted input arguments
-if nargin < 1 || isempty(window)
-	error('No PTB window open!');
-	% window = Window();
-end
-if nargin < 2 || isempty(reps)
+if nargin < 1 || isempty(reps)
 	reps = 10;
 end
-if nargin < 3 || isempty(phrase)
+if nargin < 2 || isempty(phrase)
 	phrase = 'ja biau bue';
 end
-if nargin < 4 || isempty(subject)
+if nargin < 3 || isempty(subj)
 	error('bro, no subject entered');
 	% subject	= '000_NH';				% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 end
-if nargin < 5 || isempty(match)
-	match = 'Matched';				% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% 	match = 'Unmatched';
-end
-if nargin < 6 || isempty(stimulus)
-% 	stimulus = 'Visual';			% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-	stimulus = 'Auditory';
-end
-if nargin < 7 || isempty(stimEach)
+if nargin < 4 || isempty(stimEach)
 	stimEach = false;
 end
-if nargin < 8 || isempty(isBaseline)
+if nargin < 5 || isempty(isBaseline)
 	isBaseline = false;
 end
-if nargin < 9 || isempty(isProficiency)
-	isProficiency = false;
+if nargin < 6 || isempty(isProf)
+	isProf = false;
 end
 
+%{
+if nargin < 4 || isempty(match)
+	match = 'Matched';				% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+	match = 'Unmatched';
+end
+if nargin < 5 || isempty(stimulus)
+	stimulus = 'Auditory';
+% 	stimulus = 'Visual';			% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+end
 
-proficiency = isProficiency;
+%}
 
-ortho = getOrtho(phrase);
+prof	= isProf;
+ortho	= phrase;	% getOrtho(phrase);
+
+
+%% Set up PTB window
+% window = Window;					% === Creates a new window if none are open === %
+
+
 
 %% Run
 for i = 1:reps
@@ -46,31 +50,33 @@ for i = 1:reps
 % 	break;
 
 	% Draw all the text in one go
-	drawText(window, ortho);
+% 	drawText(ortho);
+	drawOrtho(ortho);
 	
-	switch(stimulus)
+	switch(subj.stim)
 		case 'Auditory'
 			% Plays stimulus each run if indicated, but only once for the proficiency run
-			if(stimEach || ~proficiency)
+			if(stimEach || ~prof)
 				
-				playAudio(phrase, subject, match, stimulus);
+				playAudio(phrase, subj);
 				
 				% Don't show stimulus next time
-				proficiency = true;
+				prof = true;
 			end
 		case 'Visual'
 			% Plays stimulus each run if indicated, but only once for the proficiency run
-			if(stimEach || ~proficiency)
+			if(stimEach || ~prof)
 				
 				% Displays RASS output
-				playStim(phrase, subject, match, stimulus);
+				playStim(phrase, subj);
 				
+				% Creates a new window because playStim closes the old one
 				window = Window;
 				
 				WaitSecs(5);
-								
+				
 				% Don't show stimulus next time
-				proficiency = true;
+				prof = true;
 			end			
 		otherwise
 			error('No stimuli entered');
@@ -78,7 +84,7 @@ for i = 1:reps
 	
 	Beep;
 	
-	if (isProficiency || isBaseline)
+	if (isProf || isBaseline)
 		audioGate(6, true);							% Feedback with masking
 	else
 		audioGate(6, false);						% Feedback without masking

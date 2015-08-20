@@ -3,14 +3,14 @@ function sndlowlatency
 % Establish key mapping: ESCape aborts, Space toggles between auto-
 % movement of sound source or user mouse controlled movement:
 KbName('UnifyKeynames');
-space = KbName('space');
-esc = KbName('ESCAPE');
+space	= KbName('space');
+esc		= KbName('ESCAPE');
 
-dummy=GetSecs;
+dummy	= GetSecs;
 WaitSecs(0.1);
 
 % Create sound data:
-freq = 44100;
+freq	= 44100;
 
 % Start off with 10 seconds of 48 Khz random stereo noise as a fallback:
 %mynoise = randn(2,freq * 0.1);
@@ -27,8 +27,8 @@ Snd('Play', mynoise, freq, 16);
 WaitSecs(0.5);
 
 % Perform some preflip to heat up the pipe:
-screenid = max(Screen('Screens'));
-win = Screen('OpenWindow', screenid, 0);
+screenid	= max(Screen('Screens'));
+win			= Screen('OpenWindow', screenid, 0);
 
 % Wait for keypress.
 while KbCheck; end;
@@ -37,7 +37,7 @@ KbWait;
 % Realtime scheduling:
 % Priority(MaxPriority(win));
 
-for i=1:10
+for i = 1:10
 
 Screen('Flip', win);
 
@@ -53,8 +53,8 @@ WaitSecs(0.66);
 
 % Start playback for this source:
 Snd('Play', mynoise, freq, 16);
-t2 = GetSecs;
-tstart = t2;
+t2		= GetSecs;
+tstart	= t2;
 %WaitSecs(0.020);
 
 fprintf('Expected visual onset at %6.6f\n', visual_onset);

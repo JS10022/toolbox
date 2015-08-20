@@ -1,36 +1,31 @@
-function prePost( window, phrase, reps, rass, maskFirst, maskLast )
-% prePost( window, phrase, reps[, rass, mask, maskAll])
+function prePost( phrase, reps, rass, maskFirst, maskLast )
+% prePost( phrase, reps[, rass, maskFirst, maskLast])
 
-if nargin < 1 || isempty(window)
-	error('No PTB window opened!');
-end
-if nargin < 2 || isempty(phrase)
+if nargin < 1 || isempty(phrase)
 	error('No phrase entered!');
 end
-if nargin < 3 || isempty(reps)
+if nargin < 2 || isempty(reps)
 	reps = 10;
 end
-if nargin < 4 || isempty(rass)
+if nargin < 3 || isempty(rass)
 	rass = true;
 end
-if nargin < 3 || isempty(maskFirst)
+if nargin < 4 || isempty(maskFirst)
 	maskFirst = false;
 	% maskFirst = true;
 end
-if nargin < 4 || isempty(maskLast)
+if nargin < 5 || isempty(maskLast)
 	maskLast = false;
 end
 
+% window = Window;
 
 time	= 7;
-
-half = (reps / 2);
-
-	begin = ['\n\n****** Beginning "' phrase '" ******\n\n'];
-	fprintf (begin);
+half	= (reps / 2);
+begin	= ['\n\n****** Beginning "' phrase '" ******\n\n'];
+fprintf (begin);
 
 for i = 1:reps
-
 	repNum = ['Repetition ' num2str(i)];
 	fprintf (repNum);
 	
@@ -40,7 +35,7 @@ for i = 1:reps
 	
 	fprintf('\n');
 	
-	drawText(window, phrase);
+	drawOrtho(phrase);
 	Beep;
 	
 	if (maskFirst && (i <= half)) || (maskLast && (i > half))

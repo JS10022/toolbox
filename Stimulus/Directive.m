@@ -7,14 +7,14 @@ file = strcat('C:\toolbox\Stimulus\SRP 2015 Directives\Part_', num2str(num), '.w
 part	= audioread(file);
 player	= audioplayer(part, 44100);
 
-WaitSecs(1.5);
-playblocking(player);
-WaitSecs(1.5);
+% WaitSecs(1.5);
+% playblocking(player);
+% WaitSecs(1.5);
 
 
-% play(player);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% WaitSecs(1);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
-% stop(player);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+play(player);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+WaitSecs(1);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
+stop(player);					% ~~~ DEVELOPMENT PURPOSES ONLY ~~~
 
 end
 

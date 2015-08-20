@@ -1,4 +1,4 @@
-function  playStim( ) % phrase, subject, match, stimulus )
+function  playStim( phrase, subj )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -8,26 +8,17 @@ Screen('Preference', 'SkipSyncTests', 2);
 Screen('Preference', 'VisualDebugLevel', 1);
 
 % Select the external screen if it is present, else revert to the native screen
-screenNumber = max(Screen('Screens'));
+screen = max(Screen('Screens'));
 
 % Define black & white
-black	= BlackIndex(screenNumber);
+black	= BlackIndex(max(Screen('Screens')));
 
-% rect = Screen('WindowSize', screenNumber);
-
-
-
-win		= Screen('OpenWindow', screenNumber, black); % , rect);
+win		= Screen('OpenWindow', screen, black); % , rect);
 
 
+moviename	= getStim(phrase, subj);
 
-
-% Variables
-% ycenter		= screenY * 0.5;
-
-% moviename	= getStim(phrase, subject, match, stimulus);
-
-moviename = 'C:\Users\SpeechLab\Videos\videoplayback.mp4';
+% moviename = 'E:\Users\SpeechLab\Videos\videoplayback.mp4';
 
 %% Attempt to play video
 try
