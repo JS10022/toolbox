@@ -3,10 +3,10 @@ function [ msg ] = getPair( num )
 
 pair  = cell(2, 4);
 
-pair{1}	= {'phrase 1', 'phrase 2'};
-pair{2}	= {'phrase 3', 'phrase 4'};
-pair{3}	= {'phrase 5', 'phrase 6'};
-pair{4}	= {'phrase 7', 'phrase 8'};
+pair{1}	= {'ja biau bue', 'je buai bai'};
+pair{2}	= {'ji beau bea', 'ju baue bio'};
+pair{3}	= {'je boia bui', 'ji baoi bau'};
+pair{4}	= {'ju boau beo', 'je bauo bua'};
 
 msg		= pair{num};
 

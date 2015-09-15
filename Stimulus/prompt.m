@@ -40,7 +40,7 @@ ortho	= phrase;	% getOrtho(phrase);
 
 
 %% Set up PTB window
-% window = Window;					% === Creates a new window if none are open === %
+window = Window;					% === Creates a new window if none are open === %
 
 
 
@@ -50,8 +50,8 @@ for i = 1:reps
 % 	break;
 
 	% Draw all the text in one go
-% 	drawText(ortho);
-	drawOrtho(ortho);
+	drawText(window, ortho);
+% 	drawOrtho(ortho);
 	
 	switch(subj.stim)
 		case 'Auditory'

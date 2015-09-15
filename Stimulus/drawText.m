@@ -1,7 +1,7 @@
 function drawText( window, text, seconds )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-if nargin < 2 || isempty(seconds)
+if nargin < 3 || isempty(seconds)
 % 	seconds = 35;
 	seconds = 3;
 end

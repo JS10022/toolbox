@@ -38,7 +38,7 @@ ortho	= subj.pair;	% getOrtho(phrase);			% ### TODO - Fix getOrtho ### %
 
 %% ~~~ Debug & development stuff ~~~  
 root	= dataDir;
-outfile = [root subj.id '\log.txt'];
+outfile = [root subj.dir '\' subj.id '\log.txt'];
 
 if(exist([root subj.id], 'file') == 0)
 	mkdir([root subj.id]);
@@ -90,8 +90,8 @@ fprintf('Prompting Directive 2\n');
 Directive(2);
 %}
 
-Caterpillar( );
-input(wait);
+% Caterpillar( );
+% input(wait);
 % %}
 
 %{

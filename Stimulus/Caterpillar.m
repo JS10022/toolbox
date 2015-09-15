@@ -3,7 +3,7 @@ function Caterpillar(  )
 %   Detailed explanation goes here
 
 %% Create & draw window
-window = Window;
+window	= Window;
 
 img		= imread('caterpillar2.png');
 texture = Screen('MakeTexture', window, img);

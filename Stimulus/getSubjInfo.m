@@ -54,7 +54,7 @@ subNum = upper(input('Enter a subject number: ', 's'));	% === 6 digit subject ID
 
 
 
-% subj.number		= subNum(1:2);							% === XXoooo ===
+subj.dir	= subNum(1:3);								% === XXXooo ===
 subj.id		= subNum;									% === XXXXXX ===
 
 if(subNum(3) == 'M')									% === ooXooo ===
