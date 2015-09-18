@@ -15,7 +15,7 @@ black	= BlackIndex(screenNumber);
 
 win		= Screen('OpenWindow', screenNumber, black);
 
-moviename = 'C:\Users\SpeechLab\Videos\videoplayback.mp4';
+moviename = 'E:\Users\SpeechLab\Videos\videoplayback.mp4';
 
 %% Attempt to play video
 try

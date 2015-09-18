@@ -18,9 +18,6 @@ end
 %}
 
 
-
-
-
 %% Creates file path name
 wav		= '.wav';
 

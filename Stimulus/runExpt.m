@@ -37,10 +37,11 @@ ortho	= subj.pair;	% getOrtho(phrase);			% ### TODO - Fix getOrtho ### %
 
 
 %% ~~~ Debug & development stuff ~~~  
-root	= dataDir;
+root	= dataDir;		
+% 'E:\SharePoint\Subject Data - Documents\##X\##XXX#\log.txt'
 outfile = [root subj.dir '\' subj.id '\log.txt'];
 
-if(exist([root subj.id], 'file') == 0)
+if(exist([root subj.dir], 'file') == 0)
 	mkdir([root subj.id]);
 end
 
@@ -56,15 +57,15 @@ yoyo	= 'I owe you a yo-yo';
 wait	= '\n	Press ENTER to continue\n';
 
 %% Output Experiment info to log file
-%{
+% %{
 fprintf(['\t=== Information ===\n'		...
 			'\nSubject:\t'	subj.id		...
 			'\nMatch:\t\t'	subj.match	...
 			'\nStimulus:\t'	subj.stim	...
-			'\nPhrase 1:\t'	phrase(1)	...
-			'\t\t('			ortho(1) ')'...
-			'\nPhrase 2:\t'	phrase(2)	...
-			'\t\t('			ortho(2)	...
+			'\nPhrase 1:\t'	phrase{1}	...
+			'\t\t('			ortho{1} ')'...
+			'\nPhrase 2:\t'	phrase{2}	...
+			'\t\t('			ortho{2}	...
 			')\n\n\n'		]);
 %}
 %% Set up Audapter
@@ -76,28 +77,29 @@ Audapter('deviceName', 'AudioBox');
 Audapter(3, 'srate', 	11025);
 Audapter(3, 'downfact', 4);
 Audapter(3, 'framelen', 128);
-Audapter(3, 'rampLen', 0.085);
+% Audapter(3, 'rampLen', 0.085);
+Audapter(3, 'rampLen', 0.1);
 
 
 fprintf('\n\n');
 
 %% Pre-Experiment
-%{
+% %{
 
 fprintf('\nPrompting Directive 1\n');
 Directive(1);
 fprintf('Prompting Directive 2\n');
 Directive(2);
-%}
-
-% Caterpillar( );
-% input(wait);
 % %}
 
-%{
+Caterpillar( );
+input(wait);
+% %}
+
+% %{
 fprintf('\nPrompting Directive 3\n');
 Directive(3);
-vowelReps(6, f, f, t);					% Run vowelReps with last 3 cycles masked, no RASS
+vowelReps(6, f, f, t);			% Run vowelReps with last 3 cycles masked, no RASS
 
 % %}
 
@@ -115,14 +117,13 @@ fprintf('\n\n\t############ Start RASS here ############\n\n\n\n');
 fprintf('\nPrompting Directive 5\n');
 Directive(5);
 input(wait);
-vowelReps(6, t, f, t);					% Run vowelReps with RASS, last 3 cycles masked
+vowelReps(6, t, f, t);			% Run vowelReps with RASS, last 3 cycles masked
 
 
 fprintf('\nPrompting Directive 6\n');
 Directive(6);
 input(wait);
 prePost(bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
-
 
 % %}
 
@@ -133,7 +134,7 @@ prePost(bobo, 10, t, f, f);		% Prompt bobo with RASS, no masking
 fprintf('\nPrompting Directive 7\n');
 Directive(7);
 input('\n	Press ENTER to begin Learning Phase');
-%}
+% %}
 
 Learning( subj );
 % %}

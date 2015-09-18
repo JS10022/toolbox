@@ -45,7 +45,7 @@ for i = 1:5
 	fprintf (endof);
 
 	cont = input(ask, 's');					% === Asks the proctor to continue === %
-	if(cont == 'n' || cont == 'N')
+	if(cont == 'n')
 											% === "Do nothing" (i.e. the while loop will restart) === %
 	else
 		break;								% === Breaks while loop if yes, else repeats === %

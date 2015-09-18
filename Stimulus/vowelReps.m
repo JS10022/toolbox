@@ -35,7 +35,7 @@ for i = 1:reps
 	fprintf('\n');
 	
 	
-	for a = 1:2
+	for a = 1:6
 		
 		% if(~rass)
 			% fprintf(['\tRep ' num2str(a) '\n']);
