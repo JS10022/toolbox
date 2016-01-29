@@ -6,6 +6,7 @@ function  allDone( )
 % Skip sync tests (to resolve sync errors) and suppress PTB logo "splash screen"
 Screen('Preference', 'SkipSyncTests', 2);
 Screen('Preference', 'VisualDebugLevel', 1);
+Screen('Preference', 'SuppressAllWarnings', 1);
 
 % Select the external screen if it is present, else revert to the native screen
 screenNumber = max(Screen('Screens'));

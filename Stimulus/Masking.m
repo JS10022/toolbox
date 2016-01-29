@@ -10,6 +10,11 @@ else
 end
 
 
+Screen('Preference', 'SuppressAllWarnings', 1);
+
+
+% fprintf('\tPress ENTER to stop masking');
+
 masking = audioread('C:\toolbox\Stimulus\noise.wav');
 player	= audioplayer(masking, 28000);
 
@@ -24,6 +29,6 @@ end
 
 stop(player);
 
-	
+
 end
 

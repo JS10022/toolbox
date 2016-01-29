@@ -2,9 +2,11 @@ function [ subj ] = getSubjInfo( )
 %% Get experiment and subject info
 
 %% Get subject ID number from user input
-subNum = upper(input('Enter a subject number: ', 's'));	% === 6 digit subject ID ===
+subNum = upper(input('\n\nEnter a subject number: ', 's'));	% === 6 digit subject ID ===
 
-
+while(length(subNum) ~= 6)
+	subNum = upper(input('Subject number must be 6 digits, try again: ', 's'));
+end
 
 subj.dir	= subNum(1:3);								% === XXXooo ===
 subj.id		= subNum;									% === XXXXXX ===
@@ -13,6 +15,8 @@ if(subNum(3) == 'M')									% === ooXooo ===
 	subj.sex	= 'Male';
 elseif(subNum(3) == 'F')
 	subj.sex	= 'Female';
+elseif(subNum(3) == 'D')								% === DEBUG === %
+	subj.sex	= 'DEBUG';
 else
 	error('Invalid sex');
 end

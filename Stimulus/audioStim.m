@@ -21,8 +21,16 @@ end
 %% Creates file path name
 wav		= '.wav';
 
-if(strcmp(phrase, 'ja biau bue') || strcmp(phrase, 'ji beau bea'))
-	file = [dataDir subj.dir '\' subj.id '\' subj.id 'a' wav];
+if(strcmp(subj.match, 'Matched'))
+	if(strcmp(phrase, 'ja biau bue') || strcmp(phrase, 'ji beau bea'))
+		file = [dataDir subj.dir '\' subj.id '\' subj.id 'a' wav];
+	else
+		file = [dataDir subj.dir '\' subj.id '\' subj.id 'b' wav];
+	end
 else
-	file = [dataDir subj.dir '\' subj.id '\' subj.id 'b' wav];
+	if(strcmp(phrase, 'ja biau bue') || strcmp(phrase, 'ji beau bea'))
+		file = [dataDir subj.match '\' subj.id(6) '\A' wav];
+	else
+		file = [dataDir subj.match '\' subj.id(6) '\B' wav];
+	end
 end
